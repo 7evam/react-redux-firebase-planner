@@ -4,7 +4,8 @@ import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 
 const ProjectDetails = (props) => {
-  const { project } = props
+  const { project, auth } = props
+    if(!auth.uid) return <Redirect to='/signin'>
   if (project) {
     return(
     <div className="container section project-details">
@@ -37,7 +38,8 @@ const mapStateToProps = (state, ownProps) => {
   // if there are projects, get project by id and send it as props
   const project = projects ? projects[id] : null
   return {
-    project: project
+    project: project,
+    auth: state.firebase.auth
   }
 }
 
