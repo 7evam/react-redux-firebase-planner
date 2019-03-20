@@ -1,16 +1,18 @@
+html{
+  min-height: 100%;
+}
+
 body {
   margin: 0;
   padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  min-height:100%;
+  font-family: sans-serif;
+  background: url('http://mustangnews.net/wp-content/uploads/2018/06/unnamed-2.jpg') no-repeat;
+  background-size: cover;
+  min-height: 100%;
 }
 
-.notifications {
-  float:right;
+.hover:hover{
+  background-color: #D3D3D3;
 }
 
 form{
@@ -22,7 +24,27 @@ form button, form h5{
   margin: 20px 0;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+input[type=text]:not(.browser-default):focus:not([readonly]),
+input[type=email]:not(.browser-default):focus:not([readonly]),
+input[type=password]:not(.browser-default):focus:not([readonly]),
+textarea.materialize-textarea:focus:not([readonly]){
+  border-color: #ec407a;
+  box-shadow: none;
+}
+
+input[type=text]:not(.browser-default):focus:not([readonly]) + label,
+textarea.materialize-textarea:focus:not([readonly]) + label,
+input[type=email]:not(.browser-default):focus:not([readonly]) + label,
+input[type=password]:not(.browser-default):focus:not([readonly]) + label{
+  color: #ec407a !important;
+}
+
+@media only screen and (max-width: 992px){
+nav .brand-logo {
+     left: 2% !important;
+     -webkit-transform: translateX(0%) !important;
+     transform: translateX(0%) !important;
+     font-size: 1.2em;
+     transition-duration: .7s;
+   }
 }
