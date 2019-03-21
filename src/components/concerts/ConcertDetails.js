@@ -5,21 +5,24 @@ import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import { Redirect } from 'react-router-dom'
 
-const ProjectDetails = (props) => {
-  const { project, auth } = props
+const ConcertDetails = (props) => {
+  const {concert, auth } = props
 
     if(!auth.uid) return <Redirect to='/signin'/>
-    if(project){
+    if(concert){
       return(
-      <div className="container section project-details">
+      <div className="container section concert-details">
       <div className="card z-depth-0">
         <div className="card-content">
-          <span className="card-title">{project.title}</span>
-          <p>{ project.content }</p>
+          <span className="card-title">{concert.artist}</span>
+          <p>{concert.date} at {concert.time}</p>
+          <p>{concert.venue}</p>
+          <br/>
+          <p>{ concert.notes }</p>
         </div>
         <div className='card-action grey lighten-4 grey-text'>
-          <div>Posted by {project.authorFirstName} {project.authorLastName}</div>
-          <div>{moment(project.createdAt.toDate()).calendar()}</div>
+          <div>Posted by {concert.authorFirstName} {concert.authorLastName}</div>
+          <div>{moment(concert.createdAt.toDate()).calendar()}</div>
         </div>
       </div>
       </div>
@@ -27,7 +30,7 @@ const ProjectDetails = (props) => {
   } else {
     return(
       <div className='container center'>
-        <p>Loading project...</p>
+        <p>Loading concert...</p>
       </div>
       )
   }
@@ -37,11 +40,11 @@ const ProjectDetails = (props) => {
 // this is what gives this component props
 const mapStateToProps = (state, ownProps) => {
   const id = ownProps.match.params.id
-  const projects = state.firestore.data.projects
-  // if there are projects, get project by id and send it as props
-  const project = projects ? projects[id] : null
+  const concerts = state.firestore.data.concerts
+  // if there are concerts, get concert by id and send it as props
+  const concert = concerts ? concerts[id] : null
   return {
-    project: project,
+    concert: concert,
     auth: state.firebase.auth
   }
 }
@@ -49,6 +52,6 @@ const mapStateToProps = (state, ownProps) => {
 export default compose(
   connect(mapStateToProps),
   firestoreConnect([
-    {collection:'projects'}
+    {collection:'concerts'}
     ])
-  )(ProjectDetails)
+  )(ConcertDetails)

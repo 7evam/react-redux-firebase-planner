@@ -9,7 +9,7 @@ const Navbar = (props) => {
 
   const links = auth.uid ? <SignedInLinks profile={profile}/> : <SignedOutLinks/>
   return(
-    <nav className = "nav-wrapper light-green darken-3">
+    <nav className = "nav-wrapper light-blue darken-3">
       <div className = "container">
         <Link to='/' className='brand-logo'>Concert Planner</Link>
         { links }
